@@ -31,6 +31,7 @@ for /r %%i in (*.zip *.rar) do (
 )
 
 for /r %%i in (*) do (
+	attrib -r /d /s "%%i"
     if not "%%~pi"=="%dest%" (
         move "%%i" "%dest%"
     )
