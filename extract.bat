@@ -25,10 +25,17 @@ mkdir "%dest%"
 
 cd /d "%dest%"
 
+:extract_loop
+
+set "archives_exist=false"
+
 for /r %%i in (*.zip *.rar) do (
+	set "archives_exist=true"
     %winrar% x -y -ibck "%%i" "%dest%"
-	del  "%%i"
+	del /q "%%i"
 )
+
+if "%archives_exist%"=="true" goto extract_loop
 
 for /r %%i in (*) do (
 	attrib -r /d /s "%%i"
