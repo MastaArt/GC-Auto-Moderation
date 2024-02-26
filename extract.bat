@@ -31,7 +31,7 @@ set "archives_exist=false"
 
 for /r %%i in (*.zip *.rar) do (
 	set "archives_exist=true"
-    %winrar% x -y -ibck "%%i" "%dest%"
+    %winrar% x -y -ibck "%%i" "%dest%%%~ni\"	
 	del /q "%%i"
 )
 
