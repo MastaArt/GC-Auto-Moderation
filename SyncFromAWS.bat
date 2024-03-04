@@ -11,12 +11,12 @@ cls
 set input=%1
 
 set dest=
-set opt=
+set bucket=
 
 for /f "tokens=1,2 delims=;" %%i in (%input%) do (
 	set dest=%%i
-	set opt=%%j
+	set bucket=%%j
 )
 
 cd C:\Program Files\Amazon\AWSCLIV2\
-aws s3 sync s3://dev-gc-processing/ "%dest%" --delete
+aws s3 sync s3://%bucket%/ "%dest%" --delete
