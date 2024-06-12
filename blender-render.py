@@ -71,10 +71,10 @@ def setup_camera():
     obj.select_all(action='DESELECT')
     obj.select_by_type(type='CAMERA')
     obj.delete()
-    obj.camera_add(location=(5, -5, 5)) 
+    obj.camera_add(location=(0, 5, 5)) 
     camera = bpy.context.object
     camera.rotation_mode = 'XYZ'
-    camera.rotation_euler = (math.radians(45), 0, math.radians(45))
+    camera.rotation_euler = (math.radians(60), 0, math.radians(10))
     scene.camera = camera
     obj.select_all(action='SELECT')
     bpy.ops.view3d.camera_to_view_selected()
@@ -86,7 +86,7 @@ camera = setup_camera()
 # Create and configure light source (point light behind the camera)
 def setup_light():
     obj.select_all(action='DESELECT')
-    obj.light_add(type='POINT', location=(-5, 5, 5))
+    obj.light_add(type='POINT', location=(0, -8, 8))
     light = bpy.context.object
     light.data.energy = 100  # Adjust light intensity as needed
     return light
