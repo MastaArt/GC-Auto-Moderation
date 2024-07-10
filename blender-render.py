@@ -58,6 +58,7 @@ def setup_render():
     scene.cycles.samples = max_samples
     scene.render.resolution_x = 1024
     scene.render.resolution_y = 1024
+    scene.render.film_transparent = True
     #scene.render.image_settings.file_format = 'JPEG'
     #scene.render.image_settings.quality = 90  # JPEG quality (0 to 100)
     scene.render.filepath = render_file_name
@@ -93,12 +94,16 @@ def setup_light():
 
 light_source = setup_light()
 
+try:
 # Enable Skylight
-scene.world.use_nodes = True
-bg_node = scene.world.node_tree.nodes.new(type='ShaderNodeTexSky')
-output_node = scene.world.node_tree.nodes['Background']
-scene.world.node_tree.links.new(bg_node.outputs['Color'], output_node.inputs['Color'])
-scene.render.film_transparent = True
+    scene.world.use_nodes = True
+    bg_node = scene.world.node_tree.nodes.new(type='ShaderNodeTexSky')
+    output_node = scene.world.node_tree.nodes['Background']
+    scene.world.node_tree.links.new(bg_node.outputs['Color'], output_node.inputs['Color'])
+except:
+    print("Can't setup background.")
+    
+
 
 # Start rendering
 try:
