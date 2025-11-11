@@ -23,6 +23,13 @@ taskkill /F /IM 3dsmax.exe
 :: 10sec pause
 ping -n 11 127.0.0.1 >nul
 
-start "" "%run%"
+if /i not "%adv%"=="dontrun" (
+	echo Run 3ds Max
+	start "" "%run%"
+) else (
+	echo Exit
+)
 
-exit 0
+ping -n 11 127.0.0.1 >nul
+
+exit /b 0
